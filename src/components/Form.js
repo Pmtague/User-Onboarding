@@ -13,39 +13,43 @@ const UserForm = ({ errors, touched, values, status }) => {
 	}, [status]);
 	return (
 		<div className='user-form'>
-			<h1>Sign-up Form</h1>
+			<h1>Join the Fun!</h1>
 			<Form>
 				<Field 
 					type='text' 
 					name='username' 
-					placeholder='Username' 
+					placeholder='Martha Stewart' 
 				/>
-				{touched.username && errors.username && <p className="error">Please choose a username.</p>}
+				{touched.username && errors.username && 
+				<p className="error">Please choose a username.</p>}
 				<Field 
 					type='text' 
 					name='email' 
-					placeholder='Email' 
+					placeholder='martha@stewart.com' 
 				/>
-				{touched.email && errors.email && <p className="error">Email address must be valid.</p>}
+				{touched.email && errors.email && 
+				<p className="error">Email address must be valid.</p>}
 				<Field 
 					type='text'
 					 name='password' 
-					placeholder='Password' 
+					placeholder='Make sure no one is watching' 
 				/>
-				{touched.password && errors.password && <p className="error">You must choose a password.</p>}
+				{touched.password && errors.password && 
+				<p className="error">You must choose a password.</p>}
 				<label className='checkbox-container'>
-					I accept the Terms of Service
 					<Field 
 						type='checkbox' 
 						name='terms' 
 						checked={ values.terms } />
+					I accept the Terms of Service
 				</label>
 				<button type="submit">Submit</button>
 			</Form>
-
-			{users.map(user => (
-				<p key={ user.id }>{ user.username }</p>
-			))}
+			<div className='user-list'>
+				{users.map(user => (
+					<p key={ user.id }>{ user.username }</p>
+				))}
+			</div>
 		</div>
 	)
 }
@@ -64,7 +68,8 @@ const FormikUserForm = withFormik({
 	validationSchema: Yup.object().shape({
 		username: Yup.string().required(),
 		email: Yup.string().email(),
-		password: Yup.string().required()
+		password: Yup.string().required(),
+		terms: Yup.boolean().required()
 	}),
 
 	handleSubmit(values, { setStatus }) {
