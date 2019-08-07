@@ -1,19 +1,13 @@
 import React from 'react';
 import './App.css';
-import Form from './components/Form';
+import FormikUserForm from './components/Form';
 
-class App extends React.Component() {
-  state = {
-
-  }
-
-  render() {
-    return (
-      <div>
-        <Form />
-      </div>
-    )
-  }
+function App() {
+  return (
+    <div>
+      <FormikUserForm />
+    </div>
+  )
 }
 
 export default App;
